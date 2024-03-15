@@ -54,8 +54,6 @@ class TfLiteSignClassifier(
 
         val results = classifier?.classify(tensorImage, imageProcessingOptions)
 
-        Log.d("result:",results.toString())
-
         return results?.flatMap { classifications ->
             classifications.categories.map { category ->
                 Classification(

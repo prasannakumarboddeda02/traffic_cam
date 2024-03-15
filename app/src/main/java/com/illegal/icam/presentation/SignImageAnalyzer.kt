@@ -1,5 +1,6 @@
 package com.illegal.icam.presentation
 
+import android.graphics.Bitmap
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import com.illegal.icam.domain.Classification
@@ -14,7 +15,7 @@ class SignImageAnalyzer(
 
     override fun analyze(image: ImageProxy) {
 
-        if(frameSkipCounter % 30 ==0) {
+        if(frameSkipCounter % 40 ==0) {
             val rotationDegrees = image.imageInfo.rotationDegrees
             val bitmap = image
                 .toBitmap()
@@ -26,4 +27,19 @@ class SignImageAnalyzer(
 
         image.close()
     }
+}
+
+fun resizePhoto(bitmap: Bitmap): Bitmap {
+
+
+    val w = bitmap.width
+    val h = bitmap.height
+    val aspRat = w / h
+    val W = 321
+    val H = 321
+    val b = Bitmap.createScaledBitmap(bitmap, W, H, false)
+
+    return b
+
+
 }
